@@ -41,6 +41,7 @@ def get_requests_and_parse(title: str) -> str:
     #for key in count:
     #    if count[key] >= 1:
     #       print(key, ' : ', count[key])
+
     with alive_bar(len(data_keys)) as bar:
         for key in count:
             bar()
