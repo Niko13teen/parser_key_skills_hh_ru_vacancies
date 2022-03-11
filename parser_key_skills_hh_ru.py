@@ -3,10 +3,11 @@ from alive_progress import alive_bar
 from collections import Counter
 import requests
 
+
 def get_requests_and_parse(title: str) -> str:
 
     links, names, data_keys, data_count = (list() for _ in range(4))
-
+    
     for job in title:
         data = list()
         with alive_bar(len(data)) as bar:
@@ -34,13 +35,8 @@ def get_requests_and_parse(title: str) -> str:
             for links_pages in dict_json['key_skills']:
                 names.append(links_pages['name'])
  
-    count = dict(Counter(names)) 
+    count = dict(Counter(names))
     search_links = len(links)
-
-    #print(f'\n Найденных совпадений на {search_links} вакансии: \n')
-    #for key in count:
-    #    if count[key] >= 1:
-    #       print(key, ' : ', count[key])
 
     with alive_bar(len(data_keys)) as bar:
         for key in count:
@@ -53,9 +49,10 @@ def get_requests_and_parse(title: str) -> str:
     plt.bar(range(len(data_keys)), data_count)
     plt.title(f'Количество совпадений значений на {search_links} вакансии: ')
     plt.xticks(range(len(data_keys)), data_keys)
-    plt.grid(axis = 'y')
+    plt.grid(axis='y')
     plt.show()
 
+    
 if __name__ == '__main__':
     """ Example: QA Engineer and Тестировщик ПО """
     title = ['QA Engineer' and 'Тестировщик ПО']
