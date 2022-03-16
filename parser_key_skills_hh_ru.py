@@ -4,12 +4,12 @@ from collections import Counter
 import requests
 
 
-def get_requests_and_parse(title: str) -> str:
+def get_requests_and_parse(title: str):
 
     links, names, data_keys, data_count = (list() for _ in range(4))
     
     for job in title:
-        data = list()
+        data = []
         with alive_bar(len(data)) as bar:
             bar()
             for pages in range(0, 20):
